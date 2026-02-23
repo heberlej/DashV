@@ -1,13 +1,44 @@
+# Dependencies
 node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
 dist/
 build/
+*.tsbuildinfo
+backend/dist/
+frontend/dist/
+
+# Runtime
 .env
 .env.local
 .env.*.local
 *.log
+logs/
+
+# OS files
 .DS_Store
+._*
+Thumbs.db
+
+# IDE
 .vscode/settings.json
 .idea/
+*.swp
+*.swo
+*~
+.vim/
+
+# Testing
 coverage/
+.nyc_output/
+
+# Misc
 .next/
 out/
+.cache/
+temp/
+tmp/
+*.tar.gz
+
