@@ -285,6 +285,18 @@ Pull requests are welcome! Please open an issue first to discuss changes.
 
 MIT
 
+## ⚠️ Disclaimer
+
+This project was developed with the assistance of AI tools and is created by an enthusiast rather than a professional software developer. While I'm passionate about Proxmox and home lab automation, this project was built primarily for personal use and enjoyment in my own homelab environment.
+
+The code is functional and has been tested in my setup, but please be aware that:
+- This is a hobby project developed for learning and personal use
+- It may not follow all professional software development best practices
+- Use at your own risk, especially in production environments
+- Community contributions and feedback are highly appreciated to improve code quality
+
+Despite these caveats, I hope this project proves useful and brings as much joy to your homelab as it does to mine! 🚀
+
 ## 👨‍💻 Development
 
 Developed with ❤️ for Proxmox enthusiasts
