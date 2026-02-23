@@ -30,10 +30,62 @@ Wähle automatisch erkannte Icons oder füge benutzerdefinierte Icon-URLs hinzu.
 
 ## 📋 Anforderungen
 
-- Node.js 20+
-- Docker & Docker Compose
-- PostgreSQL (läuft in Docker Compose)
-- Proxmox-Host mit API-Zugriff
+### Node.js 20+
+Node.js ist die Laufzeitumgebung für das Backend und Build-Tools des Frontends.
+
+**Installation:**
+- **Windows/macOS**: [nodejs.org](https://nodejs.org/en/download) - Lade die LTS-Version herunter
+- **Linux (Ubuntu/Debian)**: 
+  ```bash
+  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+  sudo apt-get install -y nodejs
+  ```
+- **Linux (Fedora/RHEL)**:
+  ```bash
+  sudo dnf install nodejs
+  ```
+
+**Verifizierung:**
+```bash
+node --version
+npm --version
+```
+
+### Docker & Docker Compose
+Docker wird verwendet um alle Services (Frontend, Backend, PostgreSQL) zu containerisieren.
+
+**Installation:**
+- **Windows/macOS**: [Docker Desktop](https://www.docker.com/products/docker-desktop) - Enthält Docker und Docker Compose
+- **Linux (Ubuntu/Debian)**:
+  ```bash
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sudo sh get-docker.sh
+  sudo usermod -aG docker $USER
+  newgrp docker
+  ```
+  Dann Docker Compose installieren:
+  ```bash
+  sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  ```
+- **Linux (Fedora/RHEL)**:
+  ```bash
+  sudo dnf install docker docker-compose
+  sudo systemctl start docker
+  sudo usermod -aG docker $USER
+  ```
+
+**Verifizierung:**
+```bash
+docker --version
+docker compose version
+```
+
+### PostgreSQL
+PostgreSQL läuft automatisch in Docker und wird über `docker-compose.yml` bereitgestellt. Eine separate Installation ist nicht erforderlich.
+
+### Proxmox-Host mit API-Zugriff
+Du benötigst einen Proxmox-Host mit aktiviertem API-Zugriff. DashV verbindet sich über die Proxmox API und benötigt entsprechende Berechtigungen.
 
 ## 🛠️ Installation & Setup
 
