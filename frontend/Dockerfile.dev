@@ -1,0 +1,26 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy all package files and config files
+COPY package.json package-lock.json ./
+COPY tsconfig.json ./
+
+# Copy workspace packages and configs
+COPY backend/package.json ./backend/
+COPY backend/tsconfig.json ./backend/
+COPY frontend/package.json ./frontend/
+COPY frontend/tsconfig.json ./frontend/
+COPY shared/package.json ./shared/
+COPY shared/tsconfig.json ./shared/
+
+# Install all dependencies at root level
+RUN npm install
+
+# Copy source code
+COPY frontend ./frontend
+COPY shared ./shared
+
+EXPOSE 80
+
+CMD ["npm", "run", "dev", "-w", "frontend", "--", "--host", "0.0.0.0"]

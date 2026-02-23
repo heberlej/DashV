@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.alpine
+    environment:
+      NODE_ENV: production
+      MOCK_PROXMOX: "${MOCK_PROXMOX:-false}"
+      PORT: "${PORT:-3001}"
+      FRONTEND_URL: "${FRONTEND_URL:-http://localhost:80}"
+      PROXMOX_HOST: "${PROXMOX_HOST:-your-proxmox-host}"
+      PROXMOX_PORT: "${PROXMOX_PORT:-8006}"
+      PROXMOX_USER: "${PROXMOX_USER:-root@pam}"
+      PROXMOX_TOKEN_ID: "${PROXMOX_TOKEN_ID:-root@pam!dashv}"
+      PROXMOX_TOKEN_SECRET: "${PROXMOX_TOKEN_SECRET:-your-token-secret}"
+      PROXMOX_VERIFY_CERT: "${PROXMOX_VERIFY_CERT:-false}"
+    networks:
+      - dashv-network
+    ports:
+      - "3003:3001"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.alpine
+    networks:
+      - dashv-network
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+networks:
+  dashv-network:
+    driver: bridge

@@ -1,0 +1,38 @@
+FROM node:20-alpine as build
+
+WORKDIR /app
+
+# Accept build argument
+ARG VITE_API_URL=http://localhost:3001
+ENV VITE_API_URL=$VITE_API_URL
+
+COPY package.json package-lock.json ./
+COPY frontend/package.json ./frontend/
+COPY shared/package.json ./shared/
+
+RUN npm ci --workspaces --also=dev
+
+COPY frontend/src ./frontend/src
+COPY shared/src ./shared/src
+COPY frontend/index.html ./frontend/
+COPY frontend/vite.config.ts ./frontend/
+COPY frontend/tailwind.config.js ./frontend/
+COPY frontend/postcss.config.js ./frontend/
+COPY tsconfig.json ./
+COPY frontend/tsconfig.json ./frontend/
+COPY shared/tsconfig.json ./shared/
+
+RUN npm run -w frontend build
+
+# Production image
+FROM node:20-alpine
+
+WORKDIR /app
+
+RUN npm install -g serve
+
+COPY --from=build /app/frontend/dist ./frontend/dist
+
+EXPOSE 80
+
+CMD ["serve", "-s", "frontend/dist", "-l", "80"]

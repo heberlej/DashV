@@ -1,0 +1,28 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy only package files first for better caching
+COPY package.json package-lock.json ./
+COPY backend/package.json ./backend/
+COPY shared/package.json ./shared/
+
+# Install dependencies
+RUN npm install --workspaces
+
+# Copy source code
+COPY backend/src ./backend/src
+COPY shared/src ./shared/src
+COPY tsconfig.json ./
+COPY backend/tsconfig.json ./backend/
+COPY shared/tsconfig.json ./shared/
+
+# Build TypeScript
+RUN npm run -w backend build
+
+# Remove dev dependencies for production
+RUN npm prune --production --workspaces
+
+EXPOSE 3001
+
+CMD ["node", "backend/dist/index.js"]

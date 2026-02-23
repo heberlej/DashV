@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile.alpine
+    environment:
+      NODE_ENV: production
+      MOCK_PROXMOX: "${MOCK_PROXMOX:-true}"
+      PORT: "${PORT:-3001}"
+      FRONTEND_URL: "${FRONTEND_URL:-http://localhost:80}"
+    networks:
+      - dashv-network
+    ports:
+      - "3003:3001"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile.alpine
+    networks:
+      - dashv-network
+    ports:
+      - "80:80"
+    environment:
+      VITE_API_URL: "${VITE_API_URL:-http://localhost:3003}"
+    restart: unless-stopped
+
+networks:
+  dashv-network:
+    driver: bridge
