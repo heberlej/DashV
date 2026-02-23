@@ -22,7 +22,7 @@ Automatisches Service-Discovery-Dashboard für Proxmox mit Echtzeit-Updates.
 
 ### 1. Repository klonen
 ```bash
-git clone https://github.com/<dein-user>/dashv.git
+git clone https://github.com/heberlej/dashv.git
 cd dashv
 ```
 
