@@ -11,6 +11,23 @@ Automatisches Service-Discovery-Dashboard für Proxmox mit Echtzeit-Updates.
 - **Modernes UI**: React + Tailwind CSS Dashboard
 - **Responsive Design**: Funktioniert auf Desktop, Tablet und Handy
 
+## 📸 Screenshots
+
+### Service Dashboard
+Das Hauptdashboard zeigt alle erkannten Services in einem übersichtlichen Grid. Jeder Service ist kategorisiert (Media, Productivity, Development, System, etc.) und zeigt wichtige Informationen wie Status, Container-Name und IP-Adresse.
+
+![Service Dashboard](docs/screenshots/dashboard.png)
+
+### Einstellungen & Proxmox-Verbindung
+Konfiguriere deine Proxmox-Verbindung und verwalte Services. Stelle die Host-Adresse ein, füge manuelle Services hinzu oder trenne die Verbindung.
+
+![Einstellungen](docs/screenshots/settings.png)
+
+### Icon Auswahl
+Wähle automatisch erkannte Icons oder füge benutzerdefinierte Icon-URLs hinzu. Das System hat eine große Sammlung an vorgefertigten Icons.
+
+![Icon Auswahl](docs/screenshots/icons.png)
+
 ## 📋 Anforderungen
 
 - Node.js 20+
