@@ -1,40 +1,40 @@
 # DashV - Proxmox Service Dashboard
 
-Automatisches Service-Discovery-Dashboard für Proxmox mit Echtzeit-Updates.
+Automatic service discovery dashboard for Proxmox with real-time updates.
 
 ## 🚀 Features
 
-- **Automatische Service-Erkennung**: Verbinde deinen Proxmox-Host über API und DashV findet automatisch laufende Dienste
-- **Echtzeit-Updates**: WebSocket-basierte Live-Updates wenn sich Services ändern
-- **Container-Support**: Unterstützt LXC Container und QEMU VMs
-- **Change Tracking**: Nachverfolgung von Service-Änderungen
-- **Modernes UI**: React + Tailwind CSS Dashboard
-- **Responsive Design**: Funktioniert auf Desktop, Tablet und Handy
+- **Automatic Service Discovery**: Connect your Proxmox host via API and DashV automatically finds running services
+- **Real-time Updates**: WebSocket-based live updates when services change
+- **Container Support**: Supports LXC containers and QEMU VMs
+- **Change Tracking**: Track service changes over time
+- **Modern UI**: React + Tailwind CSS Dashboard
+- **Responsive Design**: Works on desktop, tablet, and mobile
 
 ## 📸 Screenshots
 
 ### Service Dashboard
-Das Hauptdashboard zeigt alle erkannten Services in einem übersichtlichen Grid. Jeder Service ist kategorisiert (Media, Productivity, Development, System, etc.) und zeigt wichtige Informationen wie Status, Container-Name und IP-Adresse.
+The main dashboard displays all discovered services in a clear grid. Each service is categorized (Media, Productivity, Development, System, etc.) and shows important information like status, container name, and IP address.
 
 ![Service Dashboard](docs/screenshots/SCR-20260223-spoo.jpeg)
 
-### Einstellungen & Proxmox-Verbindung
-Konfiguriere deine Proxmox-Verbindung und verwalte Services. Stelle die Host-Adresse ein, füge manuelle Services hinzu oder trenne die Verbindung.
+### Settings & Proxmox Connection
+Configure your Proxmox connection and manage services. Set the host address, add manual services, or disconnect.
 
-![Einstellungen](docs/screenshots/SCR-20260223-spwp.png)
+![Settings](docs/screenshots/SCR-20260223-spwp.png)
 
-### Icon Auswahl
-Wähle automatisch erkannte Icons oder füge benutzerdefinierte Icon-URLs hinzu. Das System hat eine große Sammlung an vorgefertigten Icons.
+### Icon Selection
+Choose automatically detected icons or add custom icon URLs. The system has a large collection of pre-configured icons.
 
-![Icon Auswahl](docs/screenshots/SCR-20260223-sqav.png)
+![Icon Selection](docs/screenshots/SCR-20260223-sqav.png)
 
-## 📋 Anforderungen
+## 📋 Requirements
 
 ### Node.js 20+
-Node.js ist die Laufzeitumgebung für das Backend und Build-Tools des Frontends.
+Node.js is the runtime environment for the backend and frontend build tools.
 
 **Installation:**
-- **Windows/macOS**: [nodejs.org](https://nodejs.org/en/download) - Lade die LTS-Version herunter
+- **Windows/macOS**: [nodejs.org](https://nodejs.org/en/download) - Download the LTS version
 - **Linux (Ubuntu/Debian)**: 
   ```bash
   curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
@@ -45,17 +45,17 @@ Node.js ist die Laufzeitumgebung für das Backend und Build-Tools des Frontends.
   sudo dnf install nodejs
   ```
 
-**Verifizierung:**
+**Verification:**
 ```bash
 node --version
 npm --version
 ```
 
 ### Docker & Docker Compose
-Docker wird verwendet um alle Services (Frontend, Backend, PostgreSQL) zu containerisieren.
+Docker is used to containerize all services (Frontend, Backend, PostgreSQL).
 
 **Installation:**
-- **Windows/macOS**: [Docker Desktop](https://www.docker.com/products/docker-desktop) - Enthält Docker und Docker Compose
+- **Windows/macOS**: [Docker Desktop](https://www.docker.com/products/docker-desktop) - Includes Docker and Docker Compose
 - **Linux (Ubuntu/Debian)**:
   ```bash
   curl -fsSL https://get.docker.com -o get-docker.sh
@@ -63,7 +63,7 @@ Docker wird verwendet um alle Services (Frontend, Backend, PostgreSQL) zu contai
   sudo usermod -aG docker $USER
   newgrp docker
   ```
-  Dann Docker Compose installieren:
+  Then install Docker Compose:
   ```bash
   sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   sudo chmod +x /usr/local/bin/docker-compose
@@ -75,80 +75,80 @@ Docker wird verwendet um alle Services (Frontend, Backend, PostgreSQL) zu contai
   sudo usermod -aG docker $USER
   ```
 
-**Verifizierung:**
+**Verification:**
 ```bash
 docker --version
 docker compose version
 ```
 
 ### PostgreSQL
-PostgreSQL läuft automatisch in Docker und wird über `docker-compose.yml` bereitgestellt. Eine separate Installation ist nicht erforderlich.
+PostgreSQL runs automatically in Docker and is provided via `docker-compose.yml`. No separate installation is required.
 
-### Proxmox-Host mit API-Zugriff
-Du benötigst einen Proxmox-Host mit aktiviertem API-Zugriff. DashV verbindet sich über die Proxmox API und benötigt entsprechende Berechtigungen.
+### Proxmox Host with API Access
+You need a Proxmox host with API access enabled. DashV connects via the Proxmox API and requires appropriate permissions.
 
 ## 🛠️ Installation & Setup
 
-### 1. Repository klonen
+### 1. Clone Repository
 ```bash
 git clone https://github.com/heberlej/dashv.git
 cd dashv
 ```
 
-### 2. Dependencies installieren
+### 2. Install Dependencies
 ```bash
 npm install
 ```
 
-### 3. Konfiguration setzen
-Kopiere die Beispiel-Umgebung und passe die Werte an:
+### 3. Set Configuration
+Copy the example environment and adjust the values:
 ```bash
 cp .env.example .env
 ```
 
-### 4. Services starten (Docker)
+### 4. Start Services (Docker)
 ```bash
 docker compose up -d
 ```
 
-Die folgenden Services starten:
+The following services will start:
 - **Frontend**: http://localhost:80
 - **Backend**: http://localhost:3003
 - **PostgreSQL**: localhost:5432
 
-### 5. Frontend & Backend development starten
+### 5. Start Frontend & Backend Development
 ```bash
 npm run dev
 ```
 
-Dies startet Frontend und Backend in Watch-Mode parallel.
+This starts both frontend and backend in watch mode in parallel.
 
-## 📝 Proxmox-Verbindung
+## 📝 Proxmox Connection
 
-1. Öffne das Dashboard unter http://localhost:80
-2. Verwende das Verbindungsformular um deinen Proxmox-Host zu verbinden
-3. Gib folgende Informationen ein:
-   - **Host**: z.B. `proxmox.example.com`
-   - **User**: z.B. `root@pam`
-   - **API Token**: Dein Proxmox API-Token
+1. Open the dashboard at http://localhost:80
+2. Use the connection form to connect your Proxmox host
+3. Enter the following information:
+   - **Host**: e.g. `proxmox.example.com`
+   - **User**: e.g. `root@pam`
+   - **API Token**: Your Proxmox API token
 
-> **Tipp**: API-Token erstellst du in Proxmox unter Datacenter → Permissions → API Tokens
+> **Tip**: Create API tokens in Proxmox under Datacenter → Permissions → API Tokens
 
-## ⚙️ Konfiguration
+## ⚙️ Configuration
 
-Alle Konfigurationswerte liegen in [.env](.env) und werden über Umgebungsvariablen geladen. Beispiele findest du in [.env.example](.env.example).
+All configuration values are in [.env](.env) and are loaded via environment variables. Examples can be found in [.env.example](.env.example).
 
-Wichtige Variablen:
+Important variables:
 - `PROXMOX_HOST`, `PROXMOX_USER`, `PROXMOX_TOKEN_ID`, `PROXMOX_TOKEN_SECRET`
 - `FRONTEND_URL`, `PORT`, `VITE_API_URL`
 
-## 🔐 Sicherheit & Datenschutz
+## 🔐 Security & Privacy
 
-- **Keine Secrets im Repo**: `.env` ist in der `.gitignore` enthalten.
-- **Tokens nur lokal speichern**: Nutze Proxmox-API-Tokens mit minimalen Rechten.
-- **HTTPS empfohlen**: Für öffentliche Deployments TLS terminieren (z. B. Traefik/Nginx).
+- **No Secrets in Repo**: `.env` is included in `.gitignore`.
+- **Store Tokens Locally Only**: Use Proxmox API tokens with minimal permissions.
+- **HTTPS Recommended**: For public deployments, terminate TLS (e.g. via Traefik/Nginx).
 
-## 🏗️ Projektstruktur
+## 🏗️ Project Structure
 
 ```
 dashv/
@@ -166,11 +166,11 @@ dashv/
 │   │   │   └── ServiceDiscovery.ts
 │   │   └── index.ts
 │   └── tsconfig.json
-├── shared/             # Gemeinsame Types
+├── shared/             # Shared Types
 └── docker-compose.yml
 ```
 
-## 🔧 Technologien
+## 🔧 Technologies
 
 ### Frontend
 - **React 18** - UI Framework
@@ -183,38 +183,38 @@ dashv/
 - **Node.js/Express** - HTTP Server
 - **TypeScript** - Type Safety
 - **Socket.io** - WebSocket Server
-- **PostgreSQL** - Datenbank
+- **PostgreSQL** - Database
 - **Axios** - HTTP Client (Proxmox API)
 
 ### Infrastructure
-- **Docker Compose** - Lokale Entwicklung
-- **PostgreSQL 16** - Persistente Datenspeicherung
+- **Docker Compose** - Local Development
+- **PostgreSQL 16** - Persistent Data Storage
 
 ## 📡 API Endpoints
 
 ### Services
 ```
-GET /api/services           # Alle bekannten Services
-POST /api/proxmox/connect   # Mit Proxmox verbinden
-GET /health                 # Health Check
+GET /api/services           # All known services
+POST /api/proxmox/connect   # Connect to Proxmox
+GET /health                 # Health check
 ```
 
 ### WebSocket Events
 ```
-service:added       # Neuer Service entdeckt
-service:updated     # Service aktualisiert
-service:removed     # Service entfernt
+service:added       # New service discovered
+service:updated     # Service updated
+service:removed     # Service removed
 ```
 
-## 🔄 Service Discovery Prozess
+## 🔄 Service Discovery Process
 
-1. **Initialisierung**: Verbindung zum Proxmox-Host
-2. **Container Listing**: Abrufe aller LXC Container & QEMU VMs
-3. **Port Mapping**: Ermittlung typischer Service-Ports anhand des Namens
-4. **IP Auflösung**: Abrufe der Container-IPs
-5. **Service Erkennung**: Identifikation von laufenden Diensten
-6. **Speicherung**: Services in PostgreSQL speichern
-7. **Live Updates**: Änderungen via WebSocket an Frontend senden
+1. **Initialization**: Connect to Proxmox host
+2. **Container Listing**: Fetch all LXC containers & QEMU VMs
+3. **Port Mapping**: Determine typical service ports based on name
+4. **IP Resolution**: Fetch container IPs
+5. **Service Detection**: Identify running services
+6. **Storage**: Store services in PostgreSQL
+7. **Live Updates**: Send changes to frontend via WebSocket
 
 ## 🧪 Development
 
@@ -240,48 +240,48 @@ npm run lint
 
 ## 🐳 Docker
 
-### Lokale Entwicklung
+### Local Development
 ```bash
 docker-compose up -d
 ```
 
-### Logs anschauen
+### View Logs
 ```bash
 docker-compose logs -f backend
 docker-compose logs -f frontend
 ```
 
-### Alles stoppen
+### Stop Everything
 ```bash
 docker-compose down
 ```
 
 ## 🚀 Production Deployment
 
-Für Production solltest du:
-- Environment Variables konfigurieren (`.env`)
-- TypeScript kompilieren
-- Production Docker Images bauen
-- Datenbank-Migrations durchführen
-- HTTPS konfigurieren
+For production, you should:
+- Configure environment variables (`.env`)
+- Compile TypeScript
+- Build production Docker images
+- Run database migrations
+- Configure HTTPS
 
-## 📚 Weitere Informationen
+## 📚 Further Information
 
-- Architektur: [ARCHITECTURE.md](ARCHITECTURE.md)
-- Schnellstart: [QUICKSTART.md](QUICKSTART.md)
-- Entwicklung: [DEVELOPMENT.md](DEVELOPMENT.md)
-- [Proxmox API Dokumentation](https://pve.proxmox.com/pve-docs/api-viewer/)
-- [React Dokumentation](https://react.dev)
-- [Tailwind CSS Dokumentation](https://tailwindcss.com)
+- Architecture: [ARCHITECTURE.md](ARCHITECTURE.md)
+- Quick Start: [QUICKSTART.md](QUICKSTART.md)
+- Development: [DEVELOPMENT.md](DEVELOPMENT.md)
+- [Proxmox API Documentation](https://pve.proxmox.com/pve-docs/api-viewer/)
+- [React Documentation](https://react.dev)
+- [Tailwind CSS Documentation](https://tailwindcss.com)
 
 ## 🤝 Contributing
 
-Pull Requests sind willkommen! Bitte öffne zuerst ein Issue, um Änderungen zu diskutieren.
+Pull requests are welcome! Please open an issue first to discuss changes.
 
-## 📄 Lizenz
+## 📄 License
 
 MIT
 
-## 👨‍💻 Entwicklung
+## 👨‍💻 Development
 
-Entwickelt mit ❤️ für Proxmox-Enthusiasten
+Developed with ❤️ for Proxmox enthusiasts
