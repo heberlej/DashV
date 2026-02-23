@@ -108,7 +108,7 @@ cp .env.example .env
 
 ### 4. Services starten (Docker)
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 Die folgenden Services starten:
