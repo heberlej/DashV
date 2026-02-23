@@ -188,7 +188,7 @@ const ProxmoxConnector: FC<ProxmoxConnectorProps> = ({ onConnect, loading: exter
                 </label>
                 <input
                   type="text"
-                  placeholder="proxmox.example.com:8006"
+                  placeholder="192.168.1.3"
                   value={sshHost}
                   onChange={(e) => setSshHost(e.target.value)}
                   className="w-full bg-gray-900/50 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all"
