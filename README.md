@@ -10,6 +10,9 @@ Automatic service discovery dashboard for Proxmox with real-time updates.
 - **Change Tracking**: Track service changes over time
 - **Modern UI**: React + Tailwind CSS Dashboard
 - **Responsive Design**: Works on desktop, tablet, and mobile
+- **Backup Function**: Automatic backup and restore functionality for services and configuration
+- **Multi-Language Support**: Switch between multiple languages for global accessibility
+- **Highly Customizable**: Personalize your dashboard with custom themes, layouts, and service categories
 
 ## 📸 Screenshots
 
