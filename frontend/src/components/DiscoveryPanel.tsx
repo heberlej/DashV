@@ -67,6 +67,10 @@ const DiscoveryPanel: FC<DiscoveryPanelProps> = ({ apiUrl }) => {
     return () => clearInterval(interval);
   }, [apiUrl]);
 
+  const sortedServices = status
+    ? [...status.services].sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }))
+    : [];
+
   return (
     <div className="mt-8 p-6 bg-gray-900/50 border border-gray-700 rounded-xl space-y-4">
       <div className="flex items-center justify-between">
@@ -123,7 +127,7 @@ const DiscoveryPanel: FC<DiscoveryPanelProps> = ({ apiUrl }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {status.services.map((service) => (
+                  {sortedServices.map((service) => (
                     <tr key={service.id} className="border-b border-gray-800 hover:bg-gray-800/30">
                       <td className="py-2 px-3 text-white font-medium">{service.name}</td>
                       <td className="py-2 px-3 text-gray-300 text-xs">{service.containerName}</td>
